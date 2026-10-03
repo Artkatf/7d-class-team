@@ -1,0 +1,117 @@
+# generate.py
+
+players = [
+    {
+        "name": "Стогов Артур",
+        "position": "Левый фланговый атакующий",
+        "games": 20,
+        "goals": 15,
+        "assists": 5,
+        "photo": "stogov.jpg"  # сюда впиши имя файла с фото
+    },
+    {
+        "name": "Посканной Некита",
+        "position": "Правый фланговый атакующий",
+        "games": 50,
+        "goals": 45,
+        "assists": 25,
+        "photo": "poskannoy.jpg"
+    },
+    {
+        "name": "Гранкин Александр",
+        "position": "Левый защитник",
+        "games": 0,
+        "goals": 0,
+        "assists": 0,
+        "photo": "grankin.jpg"
+    },
+    {
+        "name": "Клышников Максим",
+        "position": "Правый защитник",
+        "games": 0,
+        "goals": 0,
+        "assists": 0,
+        "photo": "klyshnikov.jpg"
+    },
+    {
+        "name": "Смирнов Лев",
+        "position": "Вратарь",
+        "games": 10,
+        "saves": 45,          # сейвы
+        "conceded": 25,       # пропущенные мячи
+        "photo": "smirnov.jpg"
+    }
+]
+
+html = """<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Команда 7Д класс</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+    h1 { color: #2c3e50; text-align: center; }
+    .team-name { text-align: center; font-size: 1.4em; color: #34495e; margin-bottom: 30px; }
+    table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+    th { background: #1a7f37; color: white; }
+    tr:nth-child(even) { background: #fafafa; }
+    tr:hover { background: #eef; }
+    
+    .photo-cell { width: 80px; text-align: center; }
+    img.player-photo { width: 70px; height: 70px; object-fit: cover; border-radius: 6px; border: 2px solid #eee; }
+    
+    .stats-row { font-weight: bold; color: #2c3e50; }
+  </style>
+</head>
+<body>
+  <h1>⚽ Команда «7Д класс»</h1>
+  <div class="team-name">Футбольная статистика состава</div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Фото</th>
+        <th>Игрок</th>
+        <th>Позиция</th>
+        <th>Матчи</th>
+        <th>Голы</th>
+        <th>Пасы</th>
+        <th>Сейвы</th>
+        <th>Пропущено</th>
+      </tr>
+    </thead>
+    <tbody>
+"""
+
+for p in players:
+    # Если у вратаря нет голов/пасов, ставим прочерк, чтобы было аккуратнее
+    goals = p.get("goals", "-")
+    assists = p.get("assists", "-")
+    saves = p.get("saves", "-")
+    conceded = p.get("conceded", "-")
+
+    html += f"""
+    <tr>
+      <td class="photo-cell"><img src="{p['photo']}" alt="{p['name']}" class="player-photo"></td>
+      <td><b>{p['name']}</b></td>
+      <td>{p['position']}</td>
+      <td>{p['games']}</td>
+      <td>{goals}</td>
+      <td>{assists}</td>
+      <td>{saves}</td>
+      <td>{conceded}</td>
+    </tr>
+    """
+
+html += """
+    </tbody>
+  </table>
+</body>
+</html>
+"""
+
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html)
+
+print("Готово! Файл index.html создан. Теперь положи рядом фото с именами, которые указаны в коде.")
