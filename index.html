@@ -5,24 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Команда 7Д класс</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; padding: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background-color: #f4f4f4; 
+            padding: 20px; 
+            margin: 0;
+        }
         h1 { color: #333; }
-        table { margin: 0 auto; border-collapse: collapse; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        th, td { border: 1px solid #ddd; padding: 12px 15px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-        tr:nth-child(even) { background-color: #f2f2f2; }
-        img { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
-        .no-photo { color: #999; font-style: italic; }
+        
+        /* Сетка для карточек игроков */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Автоматически подстраивается */
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Карточка игрока */
+        .player-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Место под фото */
+        .player-photo {
+            width: 150px;
+            height: 150px;
+            background-color: #e0e0e0; /* Цвет заглушки, если нет фото */
+            border-radius: 8px;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .player-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Текст с именем */
+        .player-name {
+            font-weight: bold;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        /* Стили для таблицы статистики (как у тебя было) */
+        table { 
+            margin: 0 auto; 
+            border-collapse: collapse; 
+            background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            width: 100%;
+            max-width: 1000px;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 12px 15px; 
+            text-align: left; 
+        }
+        th { 
+            background-color: #4CAF50; 
+            color: white; 
+        }
+        tr:nth-child(even) { 
+            background-color: #f2f2f2; 
+        }
     </style>
 </head>
 <body>
-    <h1>⚽ Команда «7Д класс»</h1>
-    <h2>Футбольная статистика состава</h2>
 
+    <h1>⚽ Команда «7Д класс»</h1>
+    <h2>Состав команды</h2>
+
+    <!-- Сетка карточек -->
+    <div class="players-grid">
+        <!-- Игрок 1 -->
+        <div class="player-card">
+            <div class="player-photo">
+                <!-- Если есть фото - раскомментируй строку ниже и удали div с текстом -->
+                <!-- <img src="stogov.jpg" alt="Стогов"> -->
+                <div>Нет фото</div>
+            </div>
+            <div class="player-name">Стогов Артур</div>
+        </div>
+
+        <!-- Игрок 2 -->
+        <div class="player-card">
+            <div class="player-photo">
+                <!-- <img src="poskannoy.jpg" alt="Посканной"> -->
+                <div>Нет фото</div>
+            </div>
+            <div class="player-name">Посканной Некита</div>
+        </div>
+
+        <!-- Игрок 3 -->
+        <div class="player-card">
+            <div class="player-photo">
+                <!-- <img src="grankin.jpg" alt="Гранкин"> -->
+                <div>Нет фото</div>
+            </div>
+            <div class="player-name">Гранкин Александр</div>
+        </div>
+
+        <!-- Игрок 4 -->
+        <div class="player-card">
+            <div class="player-photo">
+                <!-- <img src="klyshnikov.jpg" alt="Клышников"> -->
+                <div>Нет фото</div>
+            </div>
+            <div class="player-name">Клышников Максим</div>
+        </div>
+
+        <!-- Игрок 5 -->
+        <div class="player-card">
+            <div class="player-photo">
+                <!-- <img src="smirnov.jpg" alt="Смирнов"> -->
+                <div>Нет фото</div></div>
+            <div class="player-name">Смирнов Лев</div>
+        </div>
+    </div>
+
+    <!-- Блок статистики (появляется при прокрутке вниз) -->
+    <h2>📊 Футбольная статистика состава</h2>
     <table>
         <thead>
             <tr>
-                <th>Фото</th>
                 <th>Игрок</th>
                 <th>Позиция</th>
                 <th>Матчи</th>
@@ -34,8 +156,7 @@
         </thead>
         <tbody>
             <tr>
-                <td><img src="stogov.jpg" alt="Стогов" onerror="this.style.display='none'; this.nextSibling.style.display='inline';"></td>
-                <td class="no-photo">Стогов Артур</td>
+                <td>Стогов Артур</td>
                 <td>Левый фланговый атакующий</td>
                 <td>20</td>
                 <td>15</td>
@@ -44,8 +165,7 @@
                 <td>-</td>
             </tr>
             <tr>
-                <td><img src="poskannoy.jpg" alt="Посканной" onerror="this.style.display='none'; this.nextSibling.style.display='inline';"></td>
-                <td class="no-photo">Посканной Некита</td>
+                <td>Посканной Некита</td>
                 <td>Правый фланговый атакующий</td>
                 <td>50</td>
                 <td>45</td>
@@ -54,8 +174,7 @@
                 <td>-</td>
             </tr>
             <tr>
-                <td><img src="grankin.jpg" alt="Гранкин" onerror="this.style.display='none'; this.nextSibling.style.display='inline';"></td>
-                <td class="no-photo">Гранкин Александр</td>
+                <td>Гранкин Александр</td>
                 <td>Левый защитник</td>
                 <td>0</td>
                 <td>0</td>
@@ -64,8 +183,7 @@
                 <td>-</td>
             </tr>
             <tr>
-                <td><img src="klyshnikov.jpg" alt="Клышников" onerror="this.style.display='none'; this.nextSibling.style.display='inline';"></td>
-                <td class="no-photo">Клышников Максим</td>
+                <td>Клышников Максим</td>
                 <td>Правый защитник</td>
                 <td>0</td>
                 <td>0</td>
@@ -74,8 +192,7 @@
                 <td>-</td>
             </tr>
             <tr>
-                <td><img src="smirnov.jpg" alt="Смирнов" onerror="this.style.display='none'; this.nextSibling.style.display='inline';"></td>
-                <td class="no-photo">Смирнов Лев</td>
+                <td>Смирнов Лев</td>
                 <td>Вратарь</td>
                 <td>20</td>
                 <td>0</td>
@@ -85,5 +202,6 @@
             </tr>
         </tbody>
     </table>
+
 </body>
 </html>
